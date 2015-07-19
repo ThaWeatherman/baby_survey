@@ -54,7 +54,7 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.get(form.email.data)
+        user = User.query.get(form.email.data.lower())
         if user:
             if user.password == hash_password(form.password.data):
                 user.authenticated = True
@@ -87,11 +87,11 @@ def logout():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        user = User.query.get(form.email.data)
+        user = User.query.get(form.email.data.lower())
         if user:
             flash('That user already exists', 'error')
             return redirect(url_for('register'))
-        user = User(email=form.email.data, password=hash_password(form.password.data))
+        user = User(email=form.email.data.lower(), password=hash_password(form.password.data))
         db.session.add(user)
         db.session.commit()
         flash('User successfully registered', 'good')
