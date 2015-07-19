@@ -1,0 +1,14 @@
+.error {
+  color: red;
+}
+.good {
+  color: blue;
+}
+.flashul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.flashli {
+  padding: 5px 0;
+}
