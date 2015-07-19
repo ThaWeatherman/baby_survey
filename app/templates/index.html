@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if user is none or not user.is_authenticated() %}
+  Welcome to the Baby Details Guesser! Please register or login to submit your guesses about the soon-to-be-born baby.
+  {% else %}
+  <h1>Make a guess</h1>
+  <form action="" method="post" name="guess">
+    {{ form.hidden_tag() }}
+    <p>
+      Gender:<br>
+      {{ form.gender(size=80) }}<br>
+      {% for error in form.gender.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}<br>
+    </p>
+    <p>
+      Hair color:<br>
+      {{ form.hair(size=80) }}<br>
+      {% for error in form.hair.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}<br>
+    </p>
+    <p>
+      Eye color:<br>
+      {{ form.eyes(size=80) }}<br>
+      {% for error in form.eyes.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}<br>
+    </p>
+    <p>
+      Weight (in pounds):<br>
+      {{ form.weight(size=80) }}<br>
+      {% for error in form.weight.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}<br>
+    </p>
+    <p>
+      Length (in inches):<br>
+      {{ form.length(size=80) }}<br>
+      {% for error in form.length.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}<br>
+    </p>
+    <p>
+      Name:<br>
+      {{ form.name(size=80) }}<br>
+      {% for error in form.name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}<br>
+    </p>
+    <p><input type="submit" value="Guess"></p>
+  </form>
+  {% endif %}
+{% endblock %}
